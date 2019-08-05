@@ -5,7 +5,7 @@ from re import search, sub
 
 # Open Config file
 stream = open('settings.yml', 'r')
-data = yaml.load(stream)
+data = yaml.safe_load(stream)
 
 # make groups more accessible
 groupDict = {}
