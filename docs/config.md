@@ -71,6 +71,7 @@ padgroups:
     datetimeadjustable: true
     weekdaydefault: 2
     timedefault: "18:00"
+    exportScript: "/usr/local/bin/exportSitzung.sh"
 
   admins:
     name: Admins
@@ -159,6 +160,7 @@ The groups are listed below an unique identifier, which is only used in the conf
 - **datetimeadjustable** boolean if the date and/or time is a user input
 - **weekdaydefault** (optional) the default weekday (iso number) from which the default date is calculated
 - **timedefault** (optional) the default time
+- **exportScript** (optional) path to a script which takes the pads in HTML format as input
 
 
 If there are no users or groups specified everyone who can login is allowed to view that padgroup.

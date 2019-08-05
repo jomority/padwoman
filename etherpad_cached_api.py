@@ -148,6 +148,15 @@ def setHtml(padId, html):
     return r
 
 
+def getHtml(padId):
+    data = { 'padID' : padId }
+    r = requestHandler('getHTML', data)
+
+    if r['code'] == 0:
+        return r['data']['html']
+    return ""
+
+
 # returns the human friendly name of a pad
 def humanPadName(padId):
     splat = padId.split('$', 1)

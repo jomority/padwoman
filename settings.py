@@ -128,6 +128,21 @@ def groupHasTime(group):
             or search(pattern, groupDict[group].get('content', "")) is not None)
 
 
+# check if the group has an export script
+def groupHasExportScript(group):
+    if group not in groupDict.keys():
+        return False
+
+    return "exportScript" in groupDict[group].keys()
+
+
+def getGroupExportScript(group):
+    if groupHasExportScript(group):
+        return groupDict[group]['exportScript']
+    else:
+        return ""
+
+
 # Helper
 def render(template, timestamp):
     t = Template(template)

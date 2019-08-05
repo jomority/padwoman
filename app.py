@@ -129,6 +129,7 @@ def index():
         datetimeAdjustable=settings.datetimeAdjustable(active_group),
         dateDefault=settings.getDateDefault(active_group),
         timeDefault=settings.groupDict[active_group].get('timedefault', ""),
+        groupHasExport=settings.groupHasExportScript(active_group),
         groupExistsAndAllowed=groupExistsAndAllowed))
 
     # Building the user cookie
@@ -155,6 +156,9 @@ api.add_resource(microapi.CreateContentPadDatetime,
 
 api.add_resource(microapi.PadVisibility,
         '/uapi/PadVisibility/<string:padName>/<string:visibility>')
+
+api.add_resource(microapi.PadExport,
+        '/uapi/ExportPad/<string:groupId>/<string:padId>')
 
 
 # Run

@@ -79,6 +79,9 @@
 						<colgroup>
 							<col span="1" style="width: 1em;">
 							<col span="1">
+							{% if groupHasExport %}
+							<col span="1" style="width: 1em;">
+							{% endif %}
 							<col span="1" style="width: 4em;">
 						</colgroup>
 						<tbody>
@@ -88,6 +91,11 @@
 										title="make this pad {%if pad.public %}private{% else %}public{% endif %}">
 										<span class="icon">{% if pad.public %}<i class="fas fa-globe-americas">{% else %}<i class="fas fa-home">{% endif %}</i></span></a></td>
 								<td><a href="{{ pad.url }}">{{ pad.title }}</a></td>
+								{% if groupHasExport %}
+								<td><a name="exportPad" onclick="exportPad('{{ pad.id | urlencode }}')" title="export this pad">
+										<span class="icon"><i class="fas fa-file-export"></i></span>
+								</a></td>
+								{% endif %}
 								<td><span class="tag">{{ pad.date }}</span></td>
 							</tr>
 							{% endfor %}

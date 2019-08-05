@@ -169,6 +169,22 @@ function padVisibility(pad, newStatus) {
 }
 
 
+/*
+ * export pad
+ */
+function exportPad(pad) {
+	var currGroup = document.getElementById('currentGroup').value;
+	request = new XMLHttpRequest();
+	request.open("GET",
+		'/uapi/ExportPad/' + currGroup + '/' + pad);
+
+	request.addEventListener('load', function(event) {
+		// TODO: show success/failure
+	});
+
+	request.send();
+}
+
 
 // Navbar
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,6 +1,7 @@
 from flask_restful import Resource
 import flask_login
 import re
+import subprocess, os
 
 # own stuff
 from etherpad_cached_api import *
@@ -89,3 +90,19 @@ class PadVisibility(Resource):
             return { 'code' : 3, 'message' : 'not ok' }
 
         return setPublicStatus(padName, v)
+
+
+# Export pad
+class PadExport(Resource):
+    @flask_login.login_required
+    def get(self, groupId, padId):
+        if not settings.groupHasExportScript(groupId):
+            err = "Group {} does not have an export script".format(groupId)
+            print(err)
+            return err  # TODO: show success/failure in front end
+
+        html = getHtml(padId)
+        path = settings.getGroupExportScript(groupId)
+        path, script = os.path.split(path)
+        proc = subprocess.run(['./'+script], cwd=path, input=html, encoding='utf-8')
+        return html
